@@ -1,3 +1,6 @@
+`index.html`
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,73 +14,95 @@
 
 <body>
 
-    <div class="background"></div>
+<div class="stars"></div>
+<div class="stars stars-2"></div>
 
-    <header>
-        <div class="logo">
-            <span>AETHERIA</span>
-            <small>DEVELOPMENT</small>
+<header>
+
+    <a class="logo" href="#">
+        <span>AETHERIA</span>
+        <small>DEVELOPMENT</small>
+    </a>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#systems">Systèmes</a>
+    </nav>
+
+    <button id="loginButton" class="login-button">
+        🔐 Admin
+    </button>
+
+</header>
+
+
+<main>
+
+    <section class="hero" id="dashboard">
+
+        <div class="hero-content">
+
+            <div class="status">
+                <span></span>
+                EN DÉVELOPPEMENT
+            </div>
+
+            <h1>AETHERIA</h1>
+
+            <p>
+                Skyblock RPG dans un univers de galaxies,
+                planètes et donjons.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#roadmap" class="primary-button">
+                    Voir la roadmap
+                </a>
+
+                <a href="#systems" class="secondary-button">
+                    Explorer le projet
+                </a>
+            </div>
+
+            <div class="version">
+                PRE-ALPHA <strong>0.1</strong>
+            </div>
+
         </div>
 
-        <nav>
-            <a href="#dashboard">Dashboard</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="#categories">Systèmes</a>
-        </nav>
-    </header>
+        <div class="planet-decoration">
+            <div class="planet"></div>
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+        </div>
+
+    </section>
 
 
-    <main>
+    <section class="overview">
 
-        <!-- HERO -->
+        <div class="section-title">
+            <span>01</span>
+            <h2>État du projet</h2>
+        </div>
 
-        <section class="hero" id="dashboard">
-
-            <div class="hero-content">
-
-                <div class="status">
-                    <span></span>
-                    EN DÉVELOPPEMENT
-                </div>
-
-                <h1>AETHERIA</h1>
-
-                <p>
-                    Skyblock RPG dans un univers de galaxies,
-                    planètes et donjons.
-                </p>
-
-                <div class="version">
-                    PRE-ALPHA <strong>0.1</strong>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- PROGRESSION -->
-
-        <section class="overview">
-
-            <div class="section-title">
-                <span>01</span>
-                <h2>Progression du projet</h2>
-            </div>
+        <div class="dashboard-grid">
 
             <div class="progress-card">
 
-                <div class="progress-info">
-
+                <div class="progress-top">
                     <div>
                         <strong>Progression globale</strong>
-                        <span id="progressText">0%</span>
+                        <p>Avancement du développement</p>
                     </div>
 
-                    <div class="progress-bar">
-                        <div id="progressBar"></div>
-                    </div>
+                    <strong id="progressText">0%</strong>
+                </div>
 
+                <div class="progress-bar">
+                    <div id="progressBar"></div>
                 </div>
 
                 <div class="stats">
@@ -101,429 +126,180 @@
 
             </div>
 
-        </section>
 
+            <div class="status-card">
 
-        <!-- ROADMAP -->
+                <span class="card-label">VERSION ACTUELLE</span>
 
-        <section id="roadmap">
+                <strong>Pre-Alpha 0.1</strong>
 
-            <div class="section-title">
-                <span>02</span>
-                <h2>Roadmap</h2>
-            </div>
-
-
-            <!-- PHASE 0 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 0</span>
-                        <h3>Concept</h3>
-                    </div>
-
-                    <span class="phase-status status-progress">
-                        EN COURS
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Définir l'identité et les fondations d'AETHERIA.
+                <p>
+                    Conception des systèmes fondamentaux
+                    d'AETHERIA.
                 </p>
 
-
-                <div class="tasks">
-
-                    <label class="task done">
-                        <input type="checkbox" checked>
-                        <span>Nom définitif</span>
-                    </label>
-
-                    <label class="task done">
-                        <input type="checkbox" checked>
-                        <span>Concept Skyblock RPG</span>
-                    </label>
-
-                    <label class="task done">
-                        <input type="checkbox" checked>
-                        <span>Thème spatial</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Slogan</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Direction artistique</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Logo</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Palette définitive</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Police</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Mascotte</span>
-                    </label>
-
-                    <label class="task">
-                        <input type="checkbox">
-                        <span>Lore de base</span>
-                    </label>
-
-                </div>
-
-            </article>
-
-
-            <!-- PHASE 1 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 1</span>
-                        <h3>Game Design</h3>
-                    </div>
-
-                    <span class="phase-status">
-                        À VENIR
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Définir précisément les systèmes du serveur.
-                </p>
-
-
-                <div class="system-grid">
-
-                    <div class="system">
-
-                        <h4>🏝️ Skyblock</h4>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Île de départ</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Agrandissement</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Farming</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Minage</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Bâtiments</span>
-                        </label>
-
-                    </div>
-
-
-                    <div class="system">
-
-                        <h4>⚔️ RPG</h4>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Niveaux</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>XP</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Stats</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Classes</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Compétences</span>
-                        </label>
-
-                    </div>
-
-
-                    <div class="system">
-
-                        <h4>🏰 Donjons</h4>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Salles</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Mobs</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Mini-boss</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Boss</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Loot</span>
-                        </label>
-
-                    </div>
-
-
-                    <div class="system">
-
-                        <h4>💰 Économie</h4>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Monnaie</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Marché</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Hôtel des ventes</span>
-                        </label>
-
-                        <label class="task">
-                            <input type="checkbox">
-                            <span>Prix des ressources</span>
-                        </label>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PHASE 2 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 2</span>
-                        <h3>Prototype</h3>
-                    </div>
-
-                    <span class="phase-status">
-                        À VENIR
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Créer la première version réellement jouable.
-                </p>
-
-                <div class="prototype-flow">
-
-                    <div>🏝️<span>Île</span></div>
-                    <div>→</div>
-                    <div>🌱<span>Farm</span></div>
-                    <div>→</div>
-                    <div>💰<span>Argent</span></div>
-                    <div>→</div>
-                    <div>⚔️<span>Donjon</span></div>
-                    <div>→</div>
-                    <div>💎<span>Loot</span></div>
-                    <div>→</div>
-                    <div>📈<span>Progression</span></div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PHASE 3 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 3</span>
-                        <h3>Alpha</h3>
-                    </div>
-
-                    <span class="phase-status">
-                        À VENIR
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Construire les systèmes principaux du serveur.
-                </p>
-
-            </article>
-
-
-            <!-- PHASE 4 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 4</span>
-                        <h3>Beta</h3>
-                    </div>
-
-                    <span class="phase-status">
-                        À VENIR
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Tests, équilibrage et correction des problèmes.
-                </p>
-
-            </article>
-
-
-            <!-- PHASE 5 -->
-
-            <article class="phase">
-
-                <div class="phase-header">
-
-                    <div>
-                        <span class="phase-number">PHASE 5</span>
-                        <h3>Release</h3>
-                    </div>
-
-                    <span class="phase-status">
-                        À VENIR
-                    </span>
-
-                </div>
-
-                <p class="phase-description">
-                    Lancement officiel d'AETHERIA.
-                </p>
-
-            </article>
-
-        </section>
-
-
-        <!-- CATEGORIES -->
-
-        <section id="categories">
-
-            <div class="section-title">
-                <span>03</span>
-                <h2>Systèmes</h2>
-            </div>
-
-            <div class="category-grid">
-
-                <div class="category">
-                    <span>🏝️</span>
-                    <h3>Îles</h3>
-                    <p>Construction, farming et progression.</p>
-                </div>
-
-                <div class="category">
-                    <span>⚔️</span>
-                    <h3>RPG</h3>
-                    <p>Classes, statistiques, compétences et équipements.</p>
-                </div>
-
-                <div class="category">
-                    <span>🏰</span>
-                    <h3>Donjons</h3>
-                    <p>Exploration, mobs, boss et récompenses.</p>
-                </div>
-
-                <div class="category">
-                    <span>🪐</span>
-                    <h3>Planètes</h3>
-                    <p>Nouveaux mondes et nouvelles zones.</p>
-                </div>
-
-                <div class="category">
-                    <span>👨‍🚀</span>
-                    <h3>Lore</h3>
-                    <p>L'histoire d'AETHERIA et de ses habitants.</p>
-                </div>
-
-                <div class="category">
-                    <span>💰</span>
-                    <h3>Économie</h3>
-                    <p>Marché, monnaies et progression économique.</p>
+                <div class="mini-status">
+                    <span></span>
+                    Développement actif
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
-
-
-    <footer>
-
-        <strong>AETHERIA</strong>
-
-        <span>Development Dashboard</span>
-
-        <span>2026</span>
-
-    </footer>
+    </section>
 
 
-    <script src="script.js"></script>
+    <section id="roadmap">
+
+        <div class="section-title">
+            <span>02</span>
+            <h2>Roadmap</h2>
+        </div>
+
+        <div id="roadmapContainer"></div>
+
+    </section>
+
+
+    <section id="systems">
+
+        <div class="section-title">
+            <span>03</span>
+            <h2>Systèmes</h2>
+        </div>
+
+        <div class="category-grid">
+
+            <div class="category">
+                <span>🏝️</span>
+                <h3>Îles</h3>
+                <p>
+                    Construction, farming et progression
+                    des îles-planètes.
+                </p>
+            </div>
+
+            <div class="category">
+                <span>⚔️</span>
+                <h3>RPG</h3>
+                <p>
+                    Classes, statistiques, compétences
+                    et équipements.
+                </p>
+            </div>
+
+            <div class="category">
+                <span>🏰</span>
+                <h3>Donjons</h3>
+                <p>
+                    Exploration, mobs, boss et loot.
+                </p>
+            </div>
+
+            <div class="category">
+                <span>🪐</span>
+                <h3>Planètes</h3>
+                <p>
+                    Nouveaux mondes, zones et ressources.
+                </p>
+            </div>
+
+            <div class="category">
+                <span>👨‍🚀</span>
+                <h3>Lore</h3>
+                <p>
+                    L'histoire d'AETHERIA et de ses habitants.
+                </p>
+            </div>
+
+            <div class="category">
+                <span>💰</span>
+                <h3>Économie</h3>
+                <p>
+                    Marché, monnaies et progression économique.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <strong>AETHERIA</strong>
+
+    <span>Development Dashboard</span>
+
+    <span>2026</span>
+
+</footer>
+
+
+<!-- LOGIN -->
+
+<div id="loginModal" class="modal">
+
+    <div class="modal-box">
+
+        <button id="closeLogin" class="close-button">
+            ×
+        </button>
+
+        <div class="modal-icon">🔐</div>
+
+        <h2>Connexion Admin</h2>
+
+        <p>
+            Connecte-toi pour modifier la roadmap.
+        </p>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Nom d'utilisateur"
+            autocomplete="username"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Mot de passe"
+            autocomplete="current-password"
+        >
+
+        <button id="submitLogin" class="primary-button login-submit">
+            Se connecter
+        </button>
+
+        <div id="loginError"></div>
+
+    </div>
+
+</div>
+
+
+<!-- ADMIN BAR -->
+
+<div id="adminBar" class="admin-bar">
+
+    <div>
+        <span class="admin-dot"></span>
+        MODE ADMIN
+    </div>
+
+    <button id="logoutButton">
+        Déconnexion
+    </button>
+
+</div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
+```
