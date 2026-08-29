@@ -1,1061 +1,916 @@
-```css
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+```javascript
+/* =========================================
+   AETHERIA DEVELOPMENT DASHBOARD
+========================================= */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* =========================================
+   ADMIN
+========================================= */
+
+const ADMIN_USERNAME = "admin";
+const ADMIN_PASSWORD = "admin";
+
+let isAdmin =
+    localStorage.getItem("aetheria_admin") === "true";
+
+
+/* =========================================
+   ROADMAP PAR DÉFAUT
+========================================= */
+
+const defaultRoadmap = [
+
+    {
+        id: "phase0",
+
+        number: "PHASE 0",
+
+        title: "Concept",
+
+        description:
+            "Définir l'identité et les fondations d'AETHERIA.",
+
+        tasks: [
+            { id: 1, text: "Nom définitif", done: true },
+            { id: 2, text: "Concept Skyblock RPG", done: true },
+            { id: 3, text: "Thème spatial", done: true },
+            { id: 4, text: "Slogan", done: false },
+            { id: 5, text: "Direction artistique", done: false },
+            { id: 6, text: "Logo", done: false },
+            { id: 7, text: "Palette définitive", done: false },
+            { id: 8, text: "Police", done: false },
+            { id: 9, text: "Mascotte", done: false },
+            { id: 10, text: "Lore de base", done: false }
+        ]
+    },
+
+    {
+        id: "phase1",
+
+        number: "PHASE 1",
+
+        title: "Game Design",
+
+        description:
+            "Définir précisément les systèmes du serveur.",
+
+        tasks: [
+            { id: 11, text: "Système des îles", done: false },
+            { id: 12, text: "Farming", done: false },
+            { id: 13, text: "Minage", done: false },
+            { id: 14, text: "Niveaux joueur", done: false },
+            { id: 15, text: "XP", done: false },
+            { id: 16, text: "Stats RPG", done: false },
+            { id: 17, text: "Classes", done: false },
+            { id: 18, text: "Compétences", done: false },
+            { id: 19, text: "Système de donjons", done: false },
+            { id: 20, text: "Mobs", done: false },
+            { id: 21, text: "Boss", done: false },
+            { id: 22, text: "Loot", done: false },
+            { id: 23, text: "Économie", done: false },
+            { id: 24, text: "Marché", done: false },
+            { id: 25, text: "Hôtel des ventes", done: false }
+        ]
+    },
+
+    {
+        id: "phase2",
+
+        number: "PHASE 2",
+
+        title: "Prototype",
+
+        description:
+            "Créer la première version réellement jouable.",
+
+        tasks: [
+            { id: 26, text: "Créer une île", done: false },
+            { id: 27, text: "Récolter des ressources", done: false },
+            { id: 28, text: "Gagner de l'argent", done: false },
+            { id: 29, text: "Améliorer son île", done: false },
+            { id: 30, text: "Entrer dans un donjon", done: false },
+            { id: 31, text: "Combattre les mobs", done: false },
+            { id: 32, text: "Boss du premier donjon", done: false },
+            { id: 33, text: "Récompenses", done: false }
+        ]
+    },
+
+    {
+        id: "phase3",
+
+        number: "PHASE 3",
+
+        title: "Alpha",
+
+        description:
+            "Construire les systèmes principaux du serveur.",
+
+        tasks: [
+            { id: 34, text: "Système RPG complet", done: false },
+            { id: 35, text: "Système d'équipement", done: false },
+            { id: 36, text: "Premier donjon complet", done: false },
+            { id: 37, text: "Première planète", done: false },
+            { id: 38, text: "Quêtes", done: false },
+            { id: 39, text: "PNJ", done: false },
+            { id: 40, text: "Sauvegarde des joueurs", done: false }
+        ]
+    },
+
+    {
+        id: "phase4",
+
+        number: "PHASE 4",
+
+        title: "Beta",
+
+        description:
+            "Tests, équilibrage et correction des problèmes.",
+
+        tasks: [
+            { id: 41, text: "Tests joueurs", done: false },
+            { id: 42, text: "Correction des bugs", done: false },
+            { id: 43, text: "Équilibrage économique", done: false },
+            { id: 44, text: "Équilibrage RPG", done: false },
+            { id: 45, text: "Tests de performance", done: false },
+            { id: 46, text: "Tests anti-exploit", done: false }
+        ]
+    },
+
+    {
+        id: "phase5",
+
+        number: "PHASE 5",
+
+        title: "Release",
+
+        description:
+            "Préparer le lancement officiel d'AETHERIA.",
+
+        tasks: [
+            { id: 47, text: "Site public", done: false },
+            { id: 48, text: "Discord", done: false },
+            { id: 49, text: "Trailer", done: false },
+            { id: 50, text: "Réseaux sociaux", done: false },
+            { id: 51, text: "Boutique", done: false },
+            { id: 52, text: "Support", done: false },
+            { id: 53, text: "Lancement officiel", done: false }
+        ]
+    }
+
+];
+
+
+/* =========================================
+   CHARGEMENT
+========================================= */
+
+function loadRoadmap() {
+
+    const saved =
+        localStorage.getItem("aetheria_roadmap");
+
+    if (!saved) {
+        return structuredClone(defaultRoadmap);
+    }
+
+    try {
+        return JSON.parse(saved);
+    }
+
+    catch {
+        return structuredClone(defaultRoadmap);
+    }
 }
 
-html {
-    scroll-behavior: smooth;
+
+let roadmap = loadRoadmap();
+
+
+/* =========================================
+   SAUVEGARDE
+========================================= */
+
+function saveRoadmap() {
+
+    localStorage.setItem(
+        "aetheria_roadmap",
+        JSON.stringify(roadmap)
+    );
 }
 
-body {
-    background: #080a18;
-    color: #f5f3ff;
-    font-family: 'Inter', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
+
+/* =========================================
+   AFFICHAGE DE LA ROADMAP
+========================================= */
+
+function renderRoadmap() {
+
+    const container =
+        document.getElementById(
+            "roadmapContainer"
+        );
+
+    container.innerHTML = "";
+
+
+    roadmap.forEach(phase => {
+
+        const completed =
+            phase.tasks.filter(
+                task => task.done
+            ).length;
+
+        const total =
+            phase.tasks.length;
+
+        const phaseProgress =
+            total === 0
+                ? 0
+                : Math.round(
+                    completed / total * 100
+                );
+
+
+        let status = "À VENIR";
+
+        if (
+            phaseProgress === 100 &&
+            total > 0
+        ) {
+            status = "TERMINÉ";
+        }
+
+        else if (
+            phaseProgress > 0
+        ) {
+            status = "EN COURS";
+        }
+
+
+        const article =
+            document.createElement("article");
+
+        article.className = "phase";
+
+
+        article.innerHTML = `
+
+            <div class="phase-header">
+
+                <div>
+
+                    <span class="phase-number">
+                        ${escapeHTML(
+                            phase.number
+                        )}
+                    </span>
+
+                    <h3>
+                        ${escapeHTML(
+                            phase.title
+                        )}
+                    </h3>
+
+                </div>
+
+                <span class="phase-status ${
+                    status === "EN COURS"
+                        ? "status-progress"
+                        : ""
+                }">
+
+                    ${status}
+
+                </span>
+
+            </div>
+
+
+            <p class="phase-description">
+                ${escapeHTML(
+                    phase.description
+                )}
+            </p>
+
+
+            <div class="tasks">
+
+                ${phase.tasks.map(task => `
+
+                    <label class="task ${
+                        task.done
+                            ? "done"
+                            : ""
+                    }">
+
+                        <input
+                            type="checkbox"
+
+                            data-phase="${
+                                phase.id
+                            }"
+
+                            data-task="${
+                                task.id
+                            }"
+
+                            ${
+                                task.done
+                                    ? "checked"
+                                    : ""
+                            }
+
+                            ${
+                                !isAdmin
+                                    ? "disabled"
+                                    : ""
+                            }
+                        >
+
+                        <span>
+                            ${escapeHTML(
+                                task.text
+                            )}
+                        </span>
+
+                        ${
+                            isAdmin
+                                ? `
+                                    <div class="task-actions">
+
+                                        <button
+                                            class="task-delete"
+
+                                            data-phase="${
+                                                phase.id
+                                            }"
+
+                                            data-task="${
+                                                task.id
+                                            }"
+
+                                            title="Supprimer"
+                                        >
+                                            🗑
+                                        </button>
+
+                                    </div>
+                                `
+                                : ""
+                        }
+
+                    </label>
+
+                `).join("")}
+
+            </div>
+
+
+            ${
+                isAdmin
+                    ? `
+                        <button
+                            class="add-task"
+
+                            data-phase="${
+                                phase.id
+                            }"
+                        >
+                            + Ajouter une tâche
+                        </button>
+                    `
+                    : ""
+            }
+
+        `;
+
+
+        container.appendChild(article);
+
+    });
+
+
+    attachTaskEvents();
+
+    updateProgress();
 }
 
-/* =========================
-   BACKGROUND
-========================= */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -3;
+/* =========================================
+   ÉVÉNEMENTS DES TÂCHES
+========================================= */
 
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(100, 62, 190, .18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 80% 30%,
-            rgba(50, 80, 190, .14),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(120, 40, 180, .12),
-            transparent 35%
+function attachTaskEvents() {
+
+    document
+        .querySelectorAll(
+            '.task input[type="checkbox"]'
+        )
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                () => {
+
+                    const phase =
+                        roadmap.find(
+                            p =>
+                                p.id ===
+                                input.dataset.phase
+                        );
+
+                    if (!phase) return;
+
+
+                    const task =
+                        phase.tasks.find(
+                            t =>
+                                t.id ===
+                                Number(
+                                    input.dataset.task
+                                )
+                        );
+
+                    if (!task) return;
+
+
+                    task.done =
+                        input.checked;
+
+
+                    saveRoadmap();
+
+                    renderRoadmap();
+
+                }
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".task-delete"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+
+                    const phase =
+                        roadmap.find(
+                            p =>
+                                p.id ===
+                                button.dataset.phase
+                        );
+
+                    if (!phase) return;
+
+
+                    const taskId =
+                        Number(
+                            button.dataset.task
+                        );
+
+
+                    phase.tasks =
+                        phase.tasks.filter(
+                            task =>
+                                task.id !==
+                                taskId
+                        );
+
+
+                    saveRoadmap();
+
+                    renderRoadmap();
+
+                }
+            );
+
+        });
+
+
+    document
+        .querySelectorAll(
+            ".add-task"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const phase =
+                        roadmap.find(
+                            p =>
+                                p.id ===
+                                button.dataset.phase
+                        );
+
+                    if (!phase) return;
+
+
+                    const name =
+                        prompt(
+                            "Nom de la nouvelle tâche :"
+                        );
+
+
+                    if (
+                        !name ||
+                        !name.trim()
+                    ) {
+                        return;
+                    }
+
+
+                    const allTasks =
+                        roadmap.flatMap(
+                            p => p.tasks
+                        );
+
+
+                    const maxId =
+                        allTasks.length
+                            ? Math.max(
+                                ...allTasks.map(
+                                    task =>
+                                        task.id
+                                )
+                            )
+                            : 0;
+
+
+                    phase.tasks.push({
+
+                        id: maxId + 1,
+
+                        text:
+                            name.trim(),
+
+                        done: false
+
+                    });
+
+
+                    saveRoadmap();
+
+                    renderRoadmap();
+
+                }
+            );
+
+        });
+
+}
+
+
+/* =========================================
+   PROGRESSION GLOBALE
+========================================= */
+
+function updateProgress() {
+
+    const allTasks =
+        roadmap.flatMap(
+            phase => phase.tasks
+        );
+
+
+    const total =
+        allTasks.length;
+
+
+    const completed =
+        allTasks.filter(
+            task => task.done
+        ).length;
+
+
+    const remaining =
+        total - completed;
+
+
+    const percentage =
+        total === 0
+            ? 0
+            : Math.round(
+                completed /
+                total *
+                100
+            );
+
+
+    document.getElementById(
+        "totalTasks"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "completedTasks"
+    ).textContent = completed;
+
+
+    document.getElementById(
+        "remainingTasks"
+    ).textContent = remaining;
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        percentage + "%";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+const loginModal =
+    document.getElementById(
+        "loginModal"
+    );
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+const closeLogin =
+    document.getElementById(
+        "closeLogin"
+    );
+
+const submitLogin =
+    document.getElementById(
+        "submitLogin"
+    );
+
+const username =
+    document.getElementById(
+        "username"
+    );
+
+const password =
+    document.getElementById(
+        "password"
+    );
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+
+loginButton.addEventListener(
+    "click",
+    () => {
+
+        if (isAdmin) {
+
+            enableAdminMode();
+
+            return;
+
+        }
+
+        loginModal.classList.add(
+            "active"
+        );
+
+        username.focus();
+
+    }
+);
+
+
+closeLogin.addEventListener(
+    "click",
+    () => {
+
+        loginModal.classList.remove(
+            "active"
+        );
+
+        loginError.textContent = "";
+
+    }
+);
+
+
+loginModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target ===
+            loginModal
+        ) {
+
+            loginModal.classList.remove(
+                "active"
+            );
+
+        }
+
+    }
+);
+
+
+submitLogin.addEventListener(
+    "click",
+    login
+);
+
+
+password.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key ===
+            "Enter"
+        ) {
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   CONNEXION
+========================================= */
+
+function login() {
+
+    const user =
+        username.value.trim();
+
+    const pass =
+        password.value;
+
+
+    if (
+        user === ADMIN_USERNAME &&
+        pass === ADMIN_PASSWORD
+    ) {
+
+        isAdmin = true;
+
+
+        localStorage.setItem(
+            "aetheria_admin",
+            "true"
+        );
+
+
+        loginModal.classList.remove(
+            "active"
+        );
+
+
+        username.value = "";
+
+        password.value = "";
+
+        loginError.textContent = "";
+
+
+        enableAdminMode();
+
+    }
+
+    else {
+
+        loginError.textContent =
+            "Identifiants incorrects.";
+
+    }
+
+}
+
+
+/* =========================================
+   MODE ADMIN
+========================================= */
+
+function enableAdminMode() {
+
+    document.body.classList.add(
+        "admin-mode"
+    );
+
+
+    document
+        .getElementById("adminBar")
+        .classList.add("active");
+
+
+    loginButton.textContent =
+        "🛠️ Admin";
+
+
+    renderRoadmap();
+}
+
+
+function disableAdminMode() {
+
+    isAdmin = false;
+
+
+    localStorage.removeItem(
+        "aetheria_admin"
+    );
+
+
+    document.body.classList.remove(
+        "admin-mode"
+    );
+
+
+    document
+        .getElementById("adminBar")
+        .classList.remove("active");
+
+
+    loginButton.textContent =
+        "🔐 Admin";
+
+
+    renderRoadmap();
+}
+
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        disableAdminMode
+    );
+
+
+/* =========================================
+   PROTECTION HTML
+========================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
         );
 }
 
-.stars,
-.stars-2 {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -2;
 
-    background-image:
-        radial-gradient(
-            circle,
-            rgba(255,255,255,.8) 1px,
-            transparent 1px
-        );
+/* =========================================
+   DÉMARRAGE
+========================================= */
 
-    background-size: 90px 90px;
-    opacity: .18;
+renderRoadmap();
 
-    animation: moveStars 35s linear infinite;
-}
 
-.stars-2 {
-    background-size: 150px 150px;
-    opacity: .1;
-    animation-duration: 55s;
-}
+if (isAdmin) {
 
-@keyframes moveStars {
-    from {
-        transform: translateY(0);
-    }
+    enableAdminMode();
 
-    to {
-        transform: translateY(90px);
-    }
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header {
-    height: 76px;
-    padding: 0 7%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    position: sticky;
-    top: 0;
-    z-index: 50;
-
-    background: rgba(8,10,24,.78);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255,255,255,.06);
-}
-
-.logo {
-    color: white;
-    text-decoration: none;
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo span {
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
-
-.logo small {
-    color: #817b9d;
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-nav {
-    display: flex;
-    gap: 32px;
-}
-
-nav a {
-    color: #858198;
-    text-decoration: none;
-    font-size: 12px;
-    transition: .2s;
-}
-
-nav a:hover {
-    color: white;
-}
-
-.login-button {
-    padding: 9px 15px;
-
-    border: 1px solid rgba(143,111,255,.3);
-    border-radius: 8px;
-
-    color: #c8bfff;
-    background: rgba(120,90,220,.08);
-
-    cursor: pointer;
-    transition: .2s;
-}
-
-.login-button:hover {
-    background: rgba(120,90,220,.18);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 560px;
-    padding: 80px 8%;
-
-    display: flex;
-    align-items: center;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 720px;
-    position: relative;
-    z-index: 2;
-}
-
-.status {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-
-    padding: 8px 13px;
-
-    border: 1px solid rgba(145,115,255,.25);
-    border-radius: 30px;
-
-    color: #aaa3c2;
-
-    font-size: 10px;
-    letter-spacing: 1.5px;
-}
-
-.status span {
-    width: 7px;
-    height: 7px;
-
-    background: #9175ff;
-    border-radius: 50%;
-
-    box-shadow: 0 0 15px #9175ff;
-}
-
-.hero h1 {
-    margin: 25px 0 12px;
-
-    font-size: clamp(58px, 10vw, 125px);
-    letter-spacing: 11px;
-
-    background:
-        linear-gradient(
-            100deg,
-            #ffffff,
-            #9f86ff,
-            #d2c8ff
-        );
-
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.hero p {
-    max-width: 590px;
-
-    color: #918ca5;
-
-    font-size: 17px;
-    line-height: 1.7;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 30px;
-}
-
-.primary-button,
-.secondary-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 12px 18px;
-
-    border-radius: 9px;
-
-    font-size: 12px;
-
-    text-decoration: none;
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.primary-button {
-    border: 0;
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #5e43a8,
-            #8066e9
-        );
-
-    box-shadow:
-        0 8px 30px rgba(105,75,210,.18);
-}
-
-.primary-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 35px rgba(105,75,210,.3);
-}
-
-.secondary-button {
-    border: 1px solid rgba(255,255,255,.1);
-
-    color: #a09bad;
-    background: rgba(255,255,255,.025);
-}
-
-.secondary-button:hover {
-    color: white;
-    background: rgba(255,255,255,.06);
-}
-
-.version {
-    margin-top: 28px;
-
-    color: #66627a;
-
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.version strong {
-    color: #9880ee;
-}
-
-/* =========================
-   PLANET
-========================= */
-
-.planet-decoration {
-    position: absolute;
-
-    right: 10%;
-    top: 50%;
-
-    width: 310px;
-    height: 310px;
-
-    transform: translateY(-50%);
-
-    opacity: .75;
-}
-
-.planet {
-    position: absolute;
-
-    width: 135px;
-    height: 135px;
-
-    left: 87px;
-    top: 87px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #a58aff,
-            #50378f 55%,
-            #17142d
-        );
-
-    box-shadow:
-        0 0 80px rgba(112,80,220,.3);
-}
-
-.orbit {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 280px;
-    height: 100px;
-
-    border: 1px solid rgba(145,120,255,.3);
-
-    border-radius: 50%;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(-20deg);
-}
-
-.orbit-2 {
-    width: 240px;
-    height: 170px;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(50deg);
-}
-
-.orbit-3 {
-    width: 200px;
-    height: 280px;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(75deg);
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section:not(.hero) {
-    width: min(1100px, 86%);
-    margin: 0 auto 110px;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-
-    margin-bottom: 28px;
-}
-
-.section-title span {
-    color: #7761cf;
-
-    font-size: 11px;
-    letter-spacing: 2px;
-}
-
-.section-title h2 {
-    font-size: 27px;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dashboard-grid {
-    display: grid;
-
-    grid-template-columns: 2fr 1fr;
-
-    gap: 18px;
-}
-
-.progress-card,
-.status-card {
-    padding: 28px;
-
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 17px;
-
-    background: rgba(255,255,255,.025);
-
-    transition: .25s;
-}
-
-.progress-card:hover,
-.status-card:hover {
-    border-color: rgba(130,105,230,.25);
-    transform: translateY(-2px);
-}
-
-.progress-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    margin-bottom: 20px;
-}
-
-.progress-top p {
-    margin-top: 5px;
-
-    color: #696579;
-    font-size: 11px;
-}
-
-.progress-top > strong:last-child {
-    color: #a48eff;
-    font-size: 25px;
-}
-
-.progress-bar {
-    height: 8px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background: #151629;
-}
-
-#progressBar {
-    width: 0%;
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            #49328e,
-            #8c6eff
-        );
-
-    box-shadow:
-        0 0 15px rgba(130,100,240,.25);
-
-    transition: width .6s ease;
-}
-
-.stats {
-    display: flex;
-    gap: 55px;
-
-    margin-top: 27px;
-}
-
-.stats div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.stats strong {
-    font-size: 22px;
-}
-
-.stats span {
-    color: #666277;
-    font-size: 10px;
-}
-
-.card-label {
-    color: #6c6780;
-
-    font-size: 9px;
-    letter-spacing: 2px;
-}
-
-.status-card > strong {
-    display: block;
-
-    margin-top: 10px;
-
-    font-size: 20px;
-}
-
-.status-card p {
-    margin-top: 9px;
-
-    color: #777287;
-
-    font-size: 11px;
-    line-height: 1.6;
-}
-
-.mini-status {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    margin-top: 22px;
-
-    color: #8f87a8;
-    font-size: 10px;
-}
-
-.mini-status span,
-.admin-dot {
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #8e75ed;
-
-    box-shadow: 0 0 10px #8e75ed;
-}
-
-/* =========================
-   PHASES
-========================= */
-
-.phase {
-    margin-bottom: 18px;
-    padding: 27px;
-
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 17px;
-
-    background: rgba(255,255,255,.02);
-
-    animation: appear .4s ease;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.phase-header {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-}
-
-.phase-number {
-    color: #7560cf;
-
-    font-size: 10px;
-    letter-spacing: 2px;
-}
-
-.phase h3 {
-    margin-top: 6px;
-    font-size: 22px;
-}
-
-.phase-description {
-    margin: 9px 0 22px;
-
-    color: #706c80;
-
-    font-size: 12px;
-}
-
-.phase-status {
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    background: rgba(255,255,255,.035);
-
-    color: #666176;
-
-    font-size: 9px;
-    letter-spacing: 1px;
-}
-
-.status-progress {
-    color: #9c85f1;
-    background: rgba(130,100,230,.08);
-}
-
-/* =========================
-   TASKS
-========================= */
-
-.tasks {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 7px;
-}
-
-.task {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    padding: 10px;
-
-    border-radius: 8px;
-
-    color: #aaa6b8;
-
-    background: rgba(255,255,255,.025);
-
-    font-size: 11px;
-
-    transition: .2s;
-}
-
-.task:hover {
-    background: rgba(255,255,255,.06);
-}
-
-.task input {
-    accent-color: #8268e8;
-}
-
-.task.done span {
-    color: #676477;
-    text-decoration: line-through;
-}
-
-.admin-mode .task {
-    cursor: pointer;
-}
-
-.admin-mode .task:hover {
-    outline: 1px solid rgba(130,105,230,.25);
-}
-
-.task-actions {
-    margin-left: auto;
-
-    display: flex;
-    gap: 5px;
-}
-
-.task-delete {
-    border: 0;
-
-    background: transparent;
-
-    color: #766f87;
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    transition: .2s;
-}
-
-.admin-mode .task:hover .task-delete {
-    opacity: 1;
-}
-
-.task-delete:hover {
-    color: #ff7373;
-}
-
-/* =========================
-   ADD TASK
-========================= */
-
-.add-task {
-    margin-top: 13px;
-
-    padding: 11px;
-
-    width: 100%;
-
-    border: 1px dashed rgba(130,105,230,.25);
-    border-radius: 8px;
-
-    color: #8179a0;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    transition: .2s;
-}
-
-.add-task:hover {
-    color: #b8a9ee;
-    background: rgba(120,90,220,.06);
-}
-
-/* =========================
-   SYSTEMS
-========================= */
-
-.category-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 17px;
-}
-
-.category {
-    padding: 24px;
-
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: 15px;
-
-    background: rgba(255,255,255,.025);
-
-    transition: .25s;
-}
-
-.category:hover {
-    transform: translateY(-5px);
-
-    border-color: rgba(130,105,230,.3);
-
-    background: rgba(130,105,230,.035);
-}
-
-.category > span {
-    font-size: 24px;
-}
-
-.category h3 {
-    margin: 13px 0 6px;
-    font-size: 15px;
-}
-
-.category p {
-    color: #716d80;
-
-    font-size: 11px;
-    line-height: 1.6;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 100;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(3,4,12,.75);
-
-    backdrop-filter: blur(10px);
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-box {
-    width: min(400px, 100%);
-
-    padding: 32px;
-
-    position: relative;
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(35,28,65,.97),
-            rgba(12,14,29,.98)
-        );
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.5);
-
-    animation: modalIn .25s ease;
-}
-
-@keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(.96);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.close-button {
-    position: absolute;
-
-    top: 15px;
-    right: 17px;
-
-    border: 0;
-
-    background: transparent;
-
-    color: #777187;
-
-    font-size: 24px;
-
-    cursor: pointer;
-}
-
-.modal-icon {
-    font-size: 27px;
-}
-
-.modal-box h2 {
-    margin-top: 12px;
-    font-size: 23px;
-}
-
-.modal-box > p {
-    margin: 7px 0 22px;
-
-    color: #777286;
-
-    font-size: 11px;
-}
-
-.modal-box input {
-    width: 100%;
-
-    padding: 13px;
-
-    margin-bottom: 9px;
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 8px;
-
-    outline: none;
-
-    color: white;
-
-    background: rgba(255,255,255,.04);
-}
-
-.modal-box input:focus {
-    border-color: rgba(135,105,235,.5);
-}
-
-.login-submit {
-    width: 100%;
-    margin-top: 5px;
-}
-
-#loginError {
-    min-height: 17px;
-
-    margin-top: 10px;
-
-    color: #ff7474;
-
-    text-align: center;
-
-    font-size: 10px;
-}
-
-/* =========================
-   ADMIN BAR
-========================= */
-
-.admin-bar {
-    display: none;
-
-    position: fixed;
-
-    bottom: 18px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    z-index: 80;
-
-    padding: 10px 14px;
-
-    align-items: center;
-    gap: 20px;
-
-    border: 1px solid rgba(140,115,240,.3);
-    border-radius: 12px;
-
-    background: rgba(18,15,36,.94);
-
-    backdrop-filter: blur(15px);
-
-    box-shadow: 0 10px 40px rgba(0,0,0,.35);
-
-    color: #aaa0cf;
-
-    font-size: 10px;
-}
-
-.admin-bar.active {
-    display: flex;
-}
-
-.admin-bar > div {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-}
-
-.admin-bar button {
-    border: 0;
-
-    color: #8f87a3;
-    background: transparent;
-
-    cursor: pointer;
-}
-
-.admin-bar button:hover {
-    color: white;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 32px 7%;
-
-    display: flex;
-    justify-content: space-between;
-
-    border-top: 1px solid rgba(255,255,255,.06);
-
-    color: #5e596f;
-
-    font-size: 10px;
-}
-
-footer strong {
-    color: #8b849f;
-    letter-spacing: 2px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 800px) {
-
-    header {
-        padding: 0 5%;
-    }
-
-    nav {
-        display: none;
-    }
-
-    .logo small {
-        display: none;
-    }
-
-    .hero {
-        padding: 70px 7%;
-    }
-
-    .hero h1 {
-        letter-spacing: 5px;
-    }
-
-    .planet-decoration {
-        opacity: .18;
-        right: -100px;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tasks,
-    .category-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
-        gap: 25px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    footer {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .admin-bar {
-        width: calc(100% - 30px);
-        justify-content: space-between;
-    }
 }
 ```
