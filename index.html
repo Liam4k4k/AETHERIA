@@ -1,301 +1,66 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AETHERIA — Development</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AETHERIA — Roadmap officielle du serveur RPG spatial.">
+  <title>AETHERIA | Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="background"></div>
+  <header class="navbar">
+    <a href="#accueil" class="logo">✦ AETHERIA</a>
+    <nav><a href="#roadmap">Roadmap</a><a href="#univers">Univers</a><a href="#avancement">Avancement</a></nav>
+    <a class="nav-btn" href="#roadmap">Explorer ↗</a>
+  </header>
 
-<div class="stars"></div>
-<div class="stars stars-2"></div>
-
-<header>
-    <a class="logo" href="#">
-        <span>AETHERIA</span>
-        <small>DEVELOPMENT</small>
-    </a>
-
-    <nav>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#systems">Systèmes</a>
-    </nav>
-
-    <button id="loginButton" class="login-button">
-        🔐 Admin
-    </button>
-</header>
-
-<main>
-
-    <section class="hero" id="dashboard">
-
-        <div class="hero-content">
-
-            <div class="status">
-                <span></span>
-                EN DÉVELOPPEMENT
-            </div>
-
-            <h1>AETHERIA</h1>
-
-            <p>
-                Skyblock RPG dans un univers de galaxies,
-                planètes et donjons.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#roadmap" class="primary-button">
-                    Voir la roadmap
-                </a>
-
-                <a href="#systems" class="secondary-button">
-                    Explorer le projet
-                </a>
-            </div>
-
-            <div class="version">
-                PRE-ALPHA <strong>0.1</strong>
-            </div>
-
-        </div>
-
-        <div class="planet-decoration">
-            <div class="planet"></div>
-            <div class="orbit orbit-1"></div>
-            <div class="orbit orbit-2"></div>
-            <div class="orbit orbit-3"></div>
-        </div>
-
+  <main>
+    <section id="accueil" class="hero section">
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> Projet en développement · Pre-Alpha</p>
+        <h1>Un univers.<br><em>Des mondes</em> à explorer.</h1>
+        <p class="lead">Bienvenue sur la roadmap officielle d’AETHERIA : un univers RPG spatial mêlant farm, Skyblock, donjons et exploration de planètes mystérieuses.</p>
+        <div class="actions"><a class="btn primary" href="#roadmap">Voir la roadmap ↓</a><a class="btn secondary" href="#avancement">Notre progression</a></div>
+        <div class="quick-stats"><div><b>0.1</b><small>Version actuelle</small></div><div><b>0%</b><small>Avancement global</small></div><div><b>∞</b><small>Possibilités</small></div></div>
+      </div>
+      <div class="space-art" aria-label="Illustration d'une planète violette">
+        <div class="ring ring-a"></div><div class="ring ring-b"></div><div class="planet"><div></div></div>
+        <div class="floating one">✦ <span><b>AETHERIA</b><small>Galaxy Project</small></span></div>
+        <div class="floating two">◈ <span><b>Exploration</b><small>Des mondes inconnus</small></span></div>
+      </div>
     </section>
 
-
-    <section class="overview">
-
-        <div class="section-title">
-            <span>01</span>
-            <h2>État du projet</h2>
-        </div>
-
-        <div class="dashboard-grid">
-
-            <div class="progress-card">
-
-                <div class="progress-top">
-
-                    <div>
-                        <strong>Progression globale</strong>
-                        <p>Avancement du développement</p>
-                    </div>
-
-                    <strong id="progressText">0%</strong>
-
-                </div>
-
-                <div class="progress-bar">
-                    <div id="progressBar"></div>
-                </div>
-
-                <div class="stats">
-
-                    <div>
-                        <strong id="totalTasks">0</strong>
-                        <span>Tâches</span>
-                    </div>
-
-                    <div>
-                        <strong id="completedTasks">0</strong>
-                        <span>Terminées</span>
-                    </div>
-
-                    <div>
-                        <strong id="remainingTasks">0</strong>
-                        <span>Restantes</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="status-card">
-
-                <span class="card-label">
-                    VERSION ACTUELLE
-                </span>
-
-                <strong>Pre-Alpha 0.1</strong>
-
-                <p>
-                    Conception des systèmes fondamentaux
-                    d'AETHERIA.
-                </p>
-
-                <div class="mini-status">
-                    <span></span>
-                    Développement actif
-                </div>
-
-            </div>
-
-        </div>
-
+    <section id="avancement" class="section">
+      <div class="heading"><div><p class="eyebrow">État du projet</p><h2>Tout commence ici.</h2></div><p>Le projet est encore à ses débuts. Chaque fonctionnalité sera construite progressivement.</p></div>
+      <div class="metrics">
+        <div class="panel progress-box"><div class="line"><span>Avancement global</span><b>0%</b></div><div class="track"><i style="width:0%"></i></div><div class="line muted"><small>Pre-Alpha</small><small>Début du voyage</small></div></div>
+        <div class="panel metric"><span>◌</span><b>0</b><small>Fonctionnalités terminées</small></div>
+        <div class="panel metric"><span>⌁</span><b>6</b><small>Grands axes prévus</small></div>
+      </div>
     </section>
 
-
-    <section id="roadmap">
-
-        <div class="section-title">
-            <span>02</span>
-            <h2>Roadmap</h2>
-        </div>
-
-        <div id="roadmapContainer"></div>
-
+    <section id="roadmap" class="section">
+      <div class="heading"><div><p class="eyebrow">Feuille de route</p><h2>La construction d’AETHERIA.</h2></div><p>Les statuts seront mis à jour au fil du développement du serveur.</p></div>
+      <div class="filters"><button class="active" data-filter="all">Tout</button><button data-filter="progress">En préparation</button><button data-filter="planned">À venir</button><button data-filter="done">Terminé</button></div>
+      <div class="roadmap">
+        <article class="card panel" data-status="progress"><header><span>01 · FONDATION</span><label class="progress">En préparation</label></header><h3>Les premières fondations</h3><p>Poser les bases techniques et définir l’identité du serveur.</p><ul><li>Configuration du serveur</li><li>Choix des plugins et systèmes</li><li>Organisation du projet</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+        <article class="card panel" data-status="planned"><header><span>02 · RPG</span><label>À venir</label></header><h3>Le système RPG</h3><p>Créer une progression immersive avec compétences et récompenses.</p><ul><li>Compétences et niveaux</li><li>Quêtes et récompenses</li><li>Économie et progression</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+        <article class="card panel" data-status="planned"><header><span>03 · FARM</span><label>À venir</label></header><h3>Un monde à cultiver</h3><p>Développer les systèmes de farm, de ressources et de production.</p><ul><li>Ressources et récoltes</li><li>Machines et automatisation</li><li>Amélioration des zones</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+        <article class="card panel" data-status="planned"><header><span>04 · SKYBLOCK</span><label>À venir</label></header><h3>Au-dessus des étoiles</h3><p>Imaginer une expérience Skyblock originale et évolutive.</p><ul><li>Îles personnalisables</li><li>Défis et objectifs</li><li>Progression des îles</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+        <article class="card panel" data-status="planned"><header><span>05 · DONJONS</span><label>À venir</label></header><h3>Les profondeurs inconnues</h3><p>Construire des donjons, des boss et des défis coopératifs.</p><ul><li>Donjons scénarisés</li><li>Boss et mécaniques</li><li>Loot et récompenses</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+        <article class="card panel" data-status="planned"><header><span>06 · GALAXIE</span><label>À venir</label></header><h3>Les mondes d’AETHERIA</h3><p>Donner vie à l’univers spatial et à ses différentes planètes.</p><ul><li>Planètes et biomes</li><li>Exploration spatiale</li><li>Événements uniques</li></ul><footer>Progression <b>0%</b></footer><div class="small-track"><i style="width:0%"></i></div></article>
+      </div>
     </section>
 
-
-    <section id="systems">
-
-        <div class="section-title">
-            <span>03</span>
-            <h2>Systèmes</h2>
-        </div>
-
-        <div class="category-grid">
-
-            <div class="category">
-                <span>🏝️</span>
-                <h3>Îles</h3>
-                <p>
-                    Construction, farming et progression
-                    des îles-planètes.
-                </p>
-            </div>
-
-            <div class="category">
-                <span>⚔️</span>
-                <h3>RPG</h3>
-                <p>
-                    Classes, statistiques, compétences
-                    et équipements.
-                </p>
-            </div>
-
-            <div class="category">
-                <span>🏰</span>
-                <h3>Donjons</h3>
-                <p>
-                    Exploration, mobs, boss et loot.
-                </p>
-            </div>
-
-            <div class="category">
-                <span>🪐</span>
-                <h3>Planètes</h3>
-                <p>
-                    Nouveaux mondes, zones et ressources.
-                </p>
-            </div>
-
-            <div class="category">
-                <span>👨‍🚀</span>
-                <h3>Lore</h3>
-                <p>
-                    L'histoire d'AETHERIA et de ses habitants.
-                </p>
-            </div>
-
-            <div class="category">
-                <span>💰</span>
-                <h3>Économie</h3>
-                <p>
-                    Marché, monnaies et progression économique.
-                </p>
-            </div>
-
-        </div>
-
+    <section id="univers" class="section">
+      <div class="heading"><div><p class="eyebrow">L’identité du serveur</p><h2>Plus qu’un serveur Minecraft.</h2></div><p>Une expérience où chaque joueur pourra explorer, construire et progresser à son rythme.</p></div>
+      <div class="universe"><div class="panel"><b>✧ RPG</b><p>Évolue, débloque des compétences et écris ta progression.</p></div><div class="panel"><b>⌘ FARM</b><p>Récolte, automatise et développe tes ressources.</p></div><div class="panel"><b>◈ SKYBLOCK</b><p>Construis ton île au milieu d’un univers infini.</p></div><div class="panel"><b>☄ DONJONS</b><p>Affronte des ennemis et découvre des récompenses rares.</p></div></div>
     </section>
-
-</main>
-
-
-<footer>
-    <strong>AETHERIA</strong>
-    <span>Development Dashboard</span>
-    <span>2026</span>
-</footer>
-
-
-<!-- LOGIN -->
-
-<div id="loginModal" class="modal">
-
-    <div class="modal-box">
-
-        <button id="closeLogin" class="close-button">
-            ×
-        </button>
-
-        <div class="modal-icon">🔐</div>
-
-        <h2>Connexion Admin</h2>
-
-        <p>
-            Connecte-toi pour modifier la roadmap.
-        </p>
-
-        <input
-            type="text"
-            id="username"
-            placeholder="Nom d'utilisateur"
-            autocomplete="username"
-        >
-
-        <input
-            type="password"
-            id="password"
-            placeholder="Mot de passe"
-            autocomplete="current-password"
-        >
-
-        <button
-            id="submitLogin"
-            class="primary-button login-submit"
-        >
-            Se connecter
-        </button>
-
-        <div id="loginError"></div>
-
-    </div>
-
-</div>
-
-
-<!-- ADMIN BAR -->
-
-<div id="adminBar" class="admin-bar">
-
-    <div>
-        <span class="admin-dot"></span>
-        MODE ADMIN
-    </div>
-
-    <button id="logoutButton">
-        Déconnexion
-    </button>
-
-</div>
-
-
-<script src="script.js"></script>
-
+  </main>
+  <footer><span class="logo">✦ AETHERIA</span><p>Un univers en construction. Une aventure à venir.</p><small>© 2026 AETHERIA</small></footer>
+  <script src="script.js"></script>
 </body>
 </html>
-```
